@@ -13,14 +13,14 @@ using UnityEngine;
 
 namespace NateonusApps
 {
-    public class FlipModel : MonoBehaviour
+    public static class FlipModel
     {
 
         /// <summary>
         /// Multiply all a model's vertices & normals by mul, preserving all mesh data.
         /// </summary>
         /// <param name="mesh"></param>
-        public void MultiplyMeshCoordinates(Vector3 mul, Mesh mesh)
+        public static void MultiplyMeshCoordinates(Vector3 mul, Mesh mesh)
         {
             /* Retrieve a cloned version of 
              * the vertices and normals. */
@@ -52,7 +52,7 @@ namespace NateonusApps
         /// Reverses a model's tris. Use this if the model appears 'inside-out'.
         /// </summary>
         /// <param name="mesh"></param>
-        public void FlipTris(Mesh mesh)
+        public static void FlipTris(Mesh mesh)
         {
             /* Access the triangles to flip them */
             int[] tris;
@@ -76,7 +76,7 @@ namespace NateonusApps
         /// Flips a model's X coordinate, preserving all mesh data.
         /// </summary>
         /// <param name="mesh"></param>
-        public void FlipModelX(Mesh mesh)
+        public static void FlipModelX(Mesh mesh)
         {
             /* Multiply all mesh X coordinates by -1 */
             MultiplyMeshCoordinates(new Vector3(-1, 1, 1), mesh);
@@ -87,7 +87,7 @@ namespace NateonusApps
         /// Flips a model's Y coordinate, preserving all mesh data.
         /// </summary>
         /// <param name="mesh"></param>
-        public void FlipModelY(Mesh mesh)
+        public static void FlipModelY(Mesh mesh)
         {
             MultiplyMeshCoordinates(new Vector3(1, -1, 1), mesh);
             FlipTris(mesh);
@@ -97,7 +97,7 @@ namespace NateonusApps
         /// Flips a model's Z coordinate, preserving all mesh data.
         /// </summary>
         /// <param name="mesh"></param>
-        public void FlipModelZ(Mesh mesh)
+        public static void FlipModelZ(Mesh mesh)
         {
             MultiplyMeshCoordinates(new Vector3(1, 1, -1), mesh);
             FlipTris(mesh);
@@ -106,7 +106,7 @@ namespace NateonusApps
         /// <summary>
         /// Returns (x1 * x2, y1 * y2, z1 * z2) of two vectors.
         /// </summary>
-        private Vector3 mult(Vector3 x, Vector3 y)
+        private static Vector3 mult(Vector3 x, Vector3 y)
         {
             return new Vector3(x.x * y.x, x.y * y.y, x.z * y.z);
         }
